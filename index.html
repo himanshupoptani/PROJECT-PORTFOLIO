@@ -76,6 +76,7 @@ header.scrolled{padding:14px 0;background:var(--header-bg);backdrop-filter:blur(
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--text-secondary);padding:9px 15px;border-radius:8px;transition:color .2s,background .2s;position:relative;}
 .nav-links a:hover{color:var(--text-primary);background:var(--bg-panel);}
 .nav-links a.active{color:var(--accent);}
+.nav-link-resume{display:none;}
 .nav-cta{display:flex;align-items:center;gap:10px;}
 .nav-toggle{display:none;width:42px;height:42px;align-items:center;justify-content:center;background:var(--bg-panel);border:1px solid var(--border);border-radius:9px;color:var(--text-primary);}
 .theme-toggle{width:42px;height:42px;flex-shrink:0;}
@@ -89,6 +90,7 @@ header.scrolled{padding:14px 0;background:var(--header-bg);backdrop-filter:blur(
   .nav-links a{padding:14px 10px;font-size:15px;border-bottom:1px solid var(--border-soft);border-radius:0;}
   .nav-cta .btn-ghost{display:none;}
   .nav-toggle{display:flex;}
+  .nav-link-resume{display:block !important;color:var(--accent) !important;font-weight:600;}
 }
 
 /* hero */
@@ -117,7 +119,14 @@ header.scrolled{padding:14px 0;background:var(--header-bg);backdrop-filter:blur(
 .marquee-track span::after{content:'/';color:var(--accent-dim);}
 
 /* about */
-.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start;}
+.about-grid{display:grid;grid-template-columns:260px 1fr 1fr;gap:48px;align-items:start;}
+.about-photo{position:relative;}
+.about-photo-frame{position:relative;border-radius:50%;overflow:hidden;border:1px solid var(--border);background:var(--bg-panel);aspect-ratio:1/1;width:100%;}
+.about-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.about-photo-frame::after{content:'';position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 1px var(--accent-glow),0 0 0 1px var(--border-soft);pointer-events:none;}
+.about-photo-glow{position:absolute;top:-18px;left:-18px;right:-18px;bottom:-18px;border-radius:50%;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);z-index:-1;filter:blur(6px);}
+@media(max-width:1080px){.about-grid{grid-template-columns:220px 1fr;}.about-grid .about-cards{grid-column:1/-1;}}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:36px;}.about-photo{max-width:220px;margin:0 auto;}}
 .about-text p{color:var(--text-secondary);font-size:16px;margin-bottom:20px;}
 .about-text strong{color:var(--text-primary);font-weight:600;}
 .about-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
@@ -252,6 +261,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <a href="#education" class="nav-link">Education</a>
       <a href="#achievements" class="nav-link">Achievements</a>
       <a href="#contact" class="nav-link">Contact</a>
+      <a href="Himanshu_Resume.pdf" download class="nav-link nav-link-resume">Resume ↓</a>
     </nav>
     <div class="nav-cta">
       <button class="btn-icon theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -307,6 +317,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <p>The short version of who I am and what I'm working toward.</p>
     </div>
     <div class="about-grid">
+      <div class="about-photo reveal">
+        <div class="about-photo-glow" aria-hidden="true"></div>
+        <div class="about-photo-frame">
+          <img src="profile.jpg.jpeg" alt="Himanshu — Computer Science Engineering student">
+        </div>
+      </div>
       <div class="about-text reveal">
         <p>I'm a <strong>Computer Science and Engineering</strong> undergraduate at <strong>Lovely Professional University</strong>, currently maintaining a <strong>9.78 CGPA</strong>. My interest in computing started with logic and problem solving, and it's grown into building real, working systems — whether that's a grade-processing application in C++, a fully playable game in Python, or a physical door that opens itself using an ultrasonic sensor.</p>
         <p>I care about <strong>data structures, object-oriented design and databases</strong> as the foundation everything else is built on, and I've started extending that foundation into <strong>AI and data science</strong> through coursework and self-study. I like projects that force me to think in systems — inputs, logic, edge cases, and clean outputs.</p>
